@@ -118,7 +118,24 @@
         "nixpkgs": "nixpkgs",
         "pyproject-build-systems": "pyproject-build-systems",
         "pyproject-nix": "pyproject-nix",
+        "startpage-src": "startpage-src",
         "uv2nix": "uv2nix"
+      }
+    },
+    "startpage-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792114974,
+        "narHash": "sha256-3OoAkMDfC6ZXmkxg4pJODYV+3ChkXhldtZUOoy7cxOU=",
+        "owner": "twempi",
+        "repo": "startpage",
+        "rev": "c249ac5a090bb7465e04ff0c0fa4cef938c7d7dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "twempi",
+        "repo": "startpage",
+        "type": "github"
       }
     },
     "uv2nix": {

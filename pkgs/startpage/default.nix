@@ -1,5 +1,6 @@
 {
   pkgs,
+  src,
   colors ? {
     base00 = "191724";
     base01 = "1f1d2e";
@@ -17,11 +18,10 @@
   sansFontFamily ? fontFamily,
   startpageOrigin ? "https://t480s.tailae03d0.ts.net",
 }: let
-  startpageSource = ./src;
-  mkStylixStartpage = import ./mkStylixStartpage.nix;
+  mkStylixStartpage = import "${src}/lib/mkStylixStartpage.nix";
   startpageSite = mkStylixStartpage {
     inherit pkgs colors fontFamily sansFontFamily;
-    source = startpageSource;
+    source = src;
   };
 in
   pkgs.runCommand "helium-startpage-extension" {nativeBuildInputs = [pkgs.jq];} ''
@@ -50,5 +50,5 @@ in
         | .content_security_policy.extension_pages |= (
             if contains($origin) then . else sub("connect-src "; "connect-src \($origin) ") end
           )
-      ' ${startpageSource}/manifests/chrome.json > "$out/manifest.json"
+      ' ${src}/manifests/chrome.json > "$out/manifest.json"
   ''

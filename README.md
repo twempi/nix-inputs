@@ -52,8 +52,9 @@ extensions = [ inputs.twempi.lib.canvas-local-archive.extension ];
 ## Startpage extension
 
 `packages.x86_64-linux.startpage` builds the unpacked Terminal Start Page
-extension. Its source is bundled in `pkgs/startpage/src`, so consumers do not
-need a local startpage checkout. The default build uses Rose Pine colors,
+extension. Its source is pinned from `twempi/startpage` through the
+`startpage-src` input, so consumers do not need a local startpage checkout.
+The default build uses Rose Pine colors,
 Iosevka, and Edward's existing settings server. Override those values to follow
 the consuming Home Manager configuration:
 
@@ -70,6 +71,9 @@ Add `${startpage}` to Helium's existing comma-separated `--load-extension`
 flag. The extension keeps its manifest key, new-tab override, and local
 settings cache. It still reads and writes settings through `startpageOrigin`;
 packaging does not deploy the settings API or replace the hosted site.
+
+The same pinned source is available as `inputs.twempi.inputs.startpage-src`
+for a host's site renderer, settings API, and default settings.
 
 ```sh
 nix build .#startpage
@@ -89,6 +93,7 @@ nix build path:.#startpage --no-link
 nix flake update gesturelight-src        # new gesturelight commit
 nix flake update minimal-grub-theme-src  # new grub theme commit
 nix flake update canvas-scraper-src      # new Canvas extension package
+nix flake update startpage-src           # new startpage source commit
 nix run .#update-suwayomi                # new Suwayomi release
 ```
 

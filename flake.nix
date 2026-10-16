@@ -35,6 +35,10 @@
       url = "github:twempi/canvas-scraper";
       flake = false;
     };
+    startpage-src = {
+      url = "github:twempi/startpage";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -46,6 +50,7 @@
     gesturelight-src,
     minimal-grub-theme-src,
     canvas-scraper-src,
+    startpage-src,
     ...
   }: let
     systems = ["x86_64-linux"];
@@ -73,7 +78,9 @@
       # nixpkgs' own services.suwayomi-server uses this version automatically.
       suwayomi-server = final.callPackage ./pkgs/suwayomi-server.nix {};
 
-      startpage = final.callPackage ./pkgs/startpage {};
+      startpage = final.callPackage ./pkgs/startpage {
+        src = startpage-src;
+      };
     };
 
     packages = forAll (system: {
