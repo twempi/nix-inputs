@@ -78,7 +78,7 @@
       # nixpkgs' own services.suwayomi-server uses this version automatically.
       suwayomi-server = final.callPackage ./pkgs/suwayomi-server.nix {};
 
-      startpage = final.callPackage ./pkgs/startpage {
+      startpage = final.callPackage ./pkgs/startpage.nix {
         src = startpage-src;
       };
     };
