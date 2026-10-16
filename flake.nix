@@ -72,6 +72,8 @@
       # Same attribute name as nixpkgs on purpose: with the overlay applied,
       # nixpkgs' own services.suwayomi-server uses this version automatically.
       suwayomi-server = final.callPackage ./pkgs/suwayomi-server.nix {};
+
+      startpage = final.callPackage ./pkgs/startpage {};
     };
 
     packages = forAll (system: {
@@ -80,6 +82,7 @@
         gesturelight
         minimal-grub-theme
         suwayomi-server
+        startpage
         ;
     });
 

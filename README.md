@@ -4,11 +4,11 @@ Personal Nix packages, an overlay, and NixOS modules, exposed as one flake input
 
 | Attribute | What it is |
 | --- | --- |
-| `overlays.default` | adds `pkgs.gesturelight`, `pkgs.minimal-grub-theme`, `pkgs.suwayomi-server` |
+| `overlays.default` | adds `pkgs.gesturelight`, `pkgs.minimal-grub-theme`, `pkgs.suwayomi-server`, `pkgs.startpage` |
 | `nixosModules.default` | overlay + `gesturelight` + `boot.loader.grub.minimalTheme` options |
 | `nixosModules.{gesturelight,minimal-grub-theme,overlay}` | the pieces on their own |
 | `lib.canvas-local-archive` | `fetchExtension`, `externalExtensions`, `extension` (Canvas Local Archive CRX resolver) |
-| `packages.<system>.*` | the three packages, for `nix build .#<name>` |
+| `packages.<system>.*` | the four packages, for `nix build .#<name>` |
 | `apps.<system>.update-suwayomi` | bumps `pkgs/suwayomi-server.nix` to the latest release |
 
 ## Use
@@ -47,6 +47,40 @@ pkgs = import nixpkgs {
 # Helium extension list: replace the old canvas-local-archive input
 fetchExtension = inputs.twempi.lib.canvas-local-archive.fetchExtension { inherit pkgs; };
 extensions = [ inputs.twempi.lib.canvas-local-archive.extension ];
+```
+
+## Startpage extension
+
+`packages.x86_64-linux.startpage` builds the unpacked Terminal Start Page
+extension. Its source is bundled in `pkgs/startpage/src`, so consumers do not
+need a local startpage checkout. The default build uses Rose Pine colors,
+Iosevka, and Edward's existing settings server. Override those values to follow
+the consuming Home Manager configuration:
+
+```nix
+startpage = inputs.twempi.packages.${pkgs.stdenv.hostPlatform.system}.startpage.override {
+  colors = config.lib.stylix.colors;
+  fontFamily = config.stylix.fonts.monospace.name;
+  sansFontFamily = config.stylix.fonts.sansSerif.name;
+  startpageOrigin = "https://t480s.tailae03d0.ts.net";
+};
+```
+
+Add `${startpage}` to Helium's existing comma-separated `--load-extension`
+flag. The extension keeps its manifest key, new-tab override, and local
+settings cache. It still reads and writes settings through `startpageOrigin`;
+packaging does not deploy the settings API or replace the hosted site.
+
+```sh
+nix build .#startpage
+```
+
+After publishing these changes, update only the `twempi` input in the consuming
+flake with `nix flake update twempi`. Until then, validate without staging or
+publishing using a path flake:
+
+```sh
+nix build path:.#startpage --no-link
 ```
 
 ## Updating
