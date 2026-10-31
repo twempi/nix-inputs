@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # gesturelight is a uv project; uv2nix turns its uv.lock into a Nix build.
+    # gesturelight and kalshi-trader are uv projects; uv2nix turns their uv.lock into a Nix build.
     pyproject-nix = {
       url = "github:pyproject-nix/pyproject.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +25,10 @@
     # else). Bump one with: nix flake update gesturelight-src
     gesturelight-src = {
       url = "github:twempi/gesturelight";
+      flake = false;
+    };
+    kalshi-trader-src = {
+      url = "github:twempi/kalshi-trader";
       flake = false;
     };
     minimal-grub-theme-src = {
@@ -48,6 +52,7 @@
     uv2nix,
     pyproject-build-systems,
     gesturelight-src,
+    kalshi-trader-src,
     minimal-grub-theme-src,
     canvas-scraper-src,
     startpage-src,
@@ -70,6 +75,11 @@
         inherit pyproject-nix uv2nix pyproject-build-systems;
       };
 
+      kalshi-trader = final.callPackage ./pkgs/kalshi-trader.nix {
+        src = kalshi-trader-src;
+        inherit pyproject-nix uv2nix pyproject-build-systems;
+      };
+
       minimal-grub-theme = final.callPackage ./pkgs/minimal-grub-theme.nix {
         src = minimal-grub-theme-src;
       };
@@ -87,6 +97,7 @@
       inherit
         (pkgsFor system)
         gesturelight
+        kalshi-trader
         minimal-grub-theme
         suwayomi-server
         startpage
@@ -96,10 +107,12 @@
     nixosModules = {
       overlay = overlayModule;
       gesturelight.imports = [overlayModule ./modules/gesturelight.nix];
+      kalshi-trader.imports = [overlayModule ./modules/kalshi-trader.nix];
       minimal-grub-theme.imports = [overlayModule ./modules/minimal-grub-theme.nix];
       default.imports = [
         overlayModule
         ./modules/gesturelight.nix
+        ./modules/kalshi-trader.nix
         ./modules/minimal-grub-theme.nix
       ];
     };

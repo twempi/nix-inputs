@@ -4,11 +4,11 @@ Personal Nix packages, an overlay, and NixOS modules, exposed as one flake input
 
 | Attribute | What it is |
 | --- | --- |
-| `overlays.default` | adds `pkgs.gesturelight`, `pkgs.minimal-grub-theme`, `pkgs.suwayomi-server`, `pkgs.startpage` |
-| `nixosModules.default` | overlay + `gesturelight` + `boot.loader.grub.minimalTheme` options |
-| `nixosModules.{gesturelight,minimal-grub-theme,overlay}` | the pieces on their own |
+| `overlays.default` | adds `pkgs.gesturelight`, `pkgs.kalshi-trader`, `pkgs.minimal-grub-theme`, `pkgs.suwayomi-server`, `pkgs.startpage` |
+| `nixosModules.default` | overlay + `gesturelight` + `services.kalshi-trader` + `boot.loader.grub.minimalTheme` options |
+| `nixosModules.{gesturelight,kalshi-trader,minimal-grub-theme,overlay}` | the pieces on their own |
 | `lib.canvas-local-archive` | `fetchExtension`, `externalExtensions`, `extension` (Canvas Local Archive CRX resolver) |
-| `packages.<system>.*` | the four packages, for `nix build .#<name>` |
+| `packages.<system>.*` | the five packages, for `nix build .#<name>` |
 | `apps.<system>.update-suwayomi` | bumps `pkgs/suwayomi-server.nix` to the latest release |
 
 ## Use
@@ -87,10 +87,36 @@ publishing using a path flake:
 nix build path:.#startpage --no-link
 ```
 
+## kalshi-trader service
+
+`nixosModules.kalshi-trader` runs the Kalshi tennis research and paper-trading engine
+(`kalshi-trader run`; it never places real orders) as a sandboxed system service. It runs as the
+`kalshi-trader` user, keeps its state in `/var/lib/kalshi-trader`, and serves its dashboard on
+`127.0.0.1:<port>` only. Put a Tailscale Service in front of it, as with the other t480s services:
+
+```nix
+{ inputs, ... }: {
+  imports = [ inputs.twempi.nixosModules.kalshi-trader ];
+
+  services.kalshi-trader = {
+    enable = true;
+    port = 8787;                 # default
+    # configFile = ./settings.toml;                # default: the repo's config/settings.toml
+    # environmentFile = "/run/secrets/kalshi.env"; # optional read-only API key (WebSocket feed)
+  };
+}
+```
+
+The module also installs a `kalshi-trader` command that re-runs itself as the service user
+through sudo, so `kalshi-trader status` or `kalshi-trader trading pause` act on the running
+service's database. The project README covers the rest:
+<https://github.com/twempi/kalshi-trader#running-on-a-nixos-server-nix-inputs-module>.
+
 ## Updating
 
 ```sh
 nix flake update gesturelight-src        # new gesturelight commit
+nix flake update kalshi-trader-src       # new kalshi-trader commit
 nix flake update minimal-grub-theme-src  # new grub theme commit
 nix flake update canvas-scraper-src      # new Canvas extension package
 nix flake update startpage-src           # new startpage source commit
