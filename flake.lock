@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "kalshi-trader-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793603870,
+        "narHash": "sha256-uUZ/VsSkSjSxCphkAN4GrqRP3+WQYt7KkSi/ZX3cL24=",
+        "owner": "twempi",
+        "repo": "kalshi-trader",
+        "rev": "1c2d61421b2a3af7d811c95eab9d0179840c81a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "twempi",
+        "repo": "kalshi-trader",
+        "type": "github"
+      }
+    },
     "minimal-grub-theme-src": {
       "flake": false,
       "locked": {
@@ -50,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1792502884,
-        "narHash": "sha256-IoNisKcGbUjdd45qCqywGMCYmZ5EnkxezvLII0FWwNA=",
+        "lastModified": 1793341285,
+        "narHash": "sha256-Y1CiZ4SoBUjLQyQM/pY+rS2dXD3CHLPstF0lmOc73D4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "02c087f3fe673c9e317f206a627cb6b910336dbe",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "github"
       },
       "original": {
@@ -77,11 +93,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792499785,
-        "narHash": "sha256-mGOkvueuMGSRiD75ccxFzfEvSlIU9ztjFluHMKOtogY=",
+        "lastModified": 1793585423,
+        "narHash": "sha256-Fzdew7s0V4PHsBX0GDQ+1Zcd4HejuqAh9rAjSP9M6JQ=",
         "owner": "pyproject-nix",
         "repo": "build-system-pkgs",
-        "rev": "a17819c85163988e063806ffc4f6d2716bc8ead8",
+        "rev": "461a6a8540307fb9c05b8f6ad29e9720d2a621db",
         "type": "github"
       },
       "original": {
@@ -97,11 +113,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791657700,
-        "narHash": "sha256-vcCAvhtA7hG+/gOge29hYHy7I/dLkIsr5nLx4sFEQic=",
+        "lastModified": 1793240426,
+        "narHash": "sha256-NPWgb6H4arnWyTKvYIys5U0xqd5QY74Z+lyTJA+7XGY=",
         "owner": "pyproject-nix",
         "repo": "pyproject.nix",
-        "rev": "ddc400a6883b042646d0940e65971bb7f7e96107",
+        "rev": "bf7d4b1d6de61db02fd4e748395634f03006e5de",
         "type": "github"
       },
       "original": {
@@ -114,6 +130,7 @@
       "inputs": {
         "canvas-scraper-src": "canvas-scraper-src",
         "gesturelight-src": "gesturelight-src",
+        "kalshi-trader-src": "kalshi-trader-src",
         "minimal-grub-theme-src": "minimal-grub-theme-src",
         "nixpkgs": "nixpkgs",
         "pyproject-build-systems": "pyproject-build-systems",
@@ -148,11 +165,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792666911,
-        "narHash": "sha256-UWo7wDPi00YXOI1Io7g4vGKuCSPJ863kHJVDzsgqtoM=",
+        "lastModified": 1793272761,
+        "narHash": "sha256-3CE1CEwprYlHRlRVkXDkhqec0jjF9Cti7tdk8vVDsCM=",
         "owner": "pyproject-nix",
         "repo": "uv2nix",
-        "rev": "0fdaa03ea3c3c16dbb1fe4d69108f07227a4b42d",
+        "rev": "c361746c7d630d98b972378290547c8d35542a7a",
         "type": "github"
       },
       "original": {
