@@ -35,11 +35,11 @@
     "kalshi-trader-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1794115768,
-        "narHash": "sha256-U4fzYcrBsLsomjkFjmIie+Ud6zXa2t17gvqinEwSeSQ=",
+        "lastModified": 1794119713,
+        "narHash": "sha256-fLF4Zvwqoyu3TKm8Qst5ZhQMzYzGby/W+E5MVCGRVG4=",
         "owner": "twempi",
         "repo": "kalshi-trader",
-        "rev": "004aecac520548b8e205b4073f95fc14e20c3fc2",
+        "rev": "bf383043da8b87de2c5ecd29ebc8c2a2d12a12b6",
         "type": "github"
       },
       "original": {
