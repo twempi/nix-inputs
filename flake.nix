@@ -118,7 +118,7 @@
     };
 
     # canvas-scraper is a resolver library, not a package:
-    #   fetchExtension, externalExtensions, extension
+    #   fetchExtension, externalExtensions, pdfHost, extension
     lib.canvas-local-archive = import ./lib/canvas-local-archive.nix canvas-scraper-src;
 
     apps = forAll (system: let

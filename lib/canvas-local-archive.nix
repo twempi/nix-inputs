@@ -7,6 +7,9 @@ src: {
   # externalExtensions { inherit lib pkgs; } -> { configFiles = ...; }
   externalExtensions = import "${src}/nix/external-extensions.nix";
 
+  # pdfHost { inherit pkgs; } -> { host; configFiles = ...; } (LibreOffice PDF converter)
+  pdfHost = import "${src}/nix/pdf-host.nix";
+
   # The { id; hash; } entry for the signed Canvas Local Archive CRX.
   extension = import "${src}/packages/entry.nix";
 }

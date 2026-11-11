@@ -7,7 +7,7 @@ Personal Nix packages, an overlay, and NixOS modules, exposed as one flake input
 | `overlays.default` | adds `pkgs.gesturelight`, `pkgs.kalshi-trader`, `pkgs.minimal-grub-theme`, `pkgs.suwayomi-server`, `pkgs.startpage` |
 | `nixosModules.default` | overlay + `gesturelight` + `services.kalshi-trader` + `boot.loader.grub.minimalTheme` options |
 | `nixosModules.{gesturelight,kalshi-trader,minimal-grub-theme,overlay}` | the pieces on their own |
-| `lib.canvas-local-archive` | `fetchExtension`, `externalExtensions`, `extension` (Canvas Local Archive CRX resolver) |
+| `lib.canvas-local-archive` | `fetchExtension`, `externalExtensions`, `pdfHost`, `extension` (Canvas Local Archive CRX resolver) |
 | `packages.<system>.*` | the five packages, for `nix build .#<name>` |
 | `apps.<system>.update-suwayomi` | bumps `pkgs/suwayomi-server.nix` to the latest release |
 
