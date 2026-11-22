@@ -84,8 +84,6 @@
         src = minimal-grub-theme-src;
       };
 
-      # Same attribute name as nixpkgs on purpose: with the overlay applied,
-      # nixpkgs' own services.suwayomi-server uses this version automatically.
       suwayomi-server = final.callPackage ./pkgs/suwayomi-server.nix {};
 
       startpage = final.callPackage ./pkgs/startpage.nix {
