@@ -3,11 +3,11 @@
     "canvas-scraper-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1795571446,
-        "narHash": "sha256-F5KYEw2s3YXSMm5tojGtPIJMa/4NxNBEuaIGTJbn82g=",
+        "lastModified": 1795572580,
+        "narHash": "sha256-PyE4Jb/8nYGHwXiWrFjkM9d4mgWfSgOc15ZTvXqi5Hs=",
         "owner": "twempi",
         "repo": "canvas-scraper",
-        "rev": "0055a28232b289009fced8d0e547a094511bec37",
+        "rev": "722d3d999594cdf457a7607ff6c53b21c4097ada",
         "type": "github"
       },
       "original": {
