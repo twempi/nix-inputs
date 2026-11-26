@@ -142,11 +142,11 @@
     "startpage-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1792117658,
-        "narHash": "sha256-AFOV3yLgbduSZOo3LB0QGrZ8KalzxYuiIQGf1LKWmQ8=",
+        "lastModified": 1795678223,
+        "narHash": "sha256-4okJY7YQjTumY2/nESz+zG1xAJPh7okrqXUxPgi7gDg=",
         "owner": "twempi",
         "repo": "startpage",
-        "rev": "f052a733ecc7ac94961627143aec7a20a0665cbb",
+        "rev": "acb2b7984d31eaf1b3d17d8099a027c301182e08",
         "type": "github"
       },
       "original": {
