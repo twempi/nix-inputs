@@ -17,12 +17,16 @@
   fontFamily ? "Iosevka",
   sansFontFamily ? fontFamily,
   startpageOrigin ? "https://t480s.tailae03d0.ts.net",
+  # Shown in the prompt as edward@<hostname>$; null shows the browser name.
+  hostname ? null,
 }: let
   mkStylixStartpage = import "${src}/lib/mkStylixStartpage.nix";
-  startpageSite = mkStylixStartpage {
-    inherit pkgs colors fontFamily sansFontFamily;
+  # Only pass arguments the pinned renderer accepts (older startpage-src
+  # revisions have no `hostname`).
+  startpageSite = mkStylixStartpage (builtins.intersectAttrs (builtins.functionArgs mkStylixStartpage) {
+    inherit pkgs colors fontFamily sansFontFamily hostname;
     source = src;
-  };
+  });
 in
   pkgs.runCommand "helium-startpage-extension" {nativeBuildInputs = [pkgs.jq];} ''
     mkdir -p "$out"
